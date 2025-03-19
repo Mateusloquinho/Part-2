@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let ballX = gameWidth / 2;
     let ballY = gameHeight / 2;
-    let ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1); // velocidade inicial aleatória
-    let ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1); // velocidade inicial aleatória
+    let ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1); // Direção inicial aleatória
+    let ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1); // Direção inicial aleatória
 
     let playerY = gameHeight / 2 - 50;
     let aiY = gameHeight / 2 - 50;
@@ -25,30 +25,27 @@ document.addEventListener('DOMContentLoaded', function () {
     let playerScore = 0;
     let aiScore = 0;
 
-    // Atualizar a posição da bola
+    // Função para mover a bola
     function moveBall() {
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
         // Verificar colisão com a parte superior ou inferior
         if (ballY <= 0 || ballY >= gameHeight - 20) {
-            ballSpeedY = -ballSpeedY; // Reverte direção no eixo Y
+            ballSpeedY = -ballSpeedY; // Inverter a direção no eixo Y
+            ballSpeedY += (Math.random() * 2 - 1); // Adicionar um pequeno efeito de variação aleatória
         }
 
         // Colisão com a raquete do jogador
         if (ballX <= paddleWidth && ballY >= playerY && ballY <= playerY + paddleHeight) {
-            ballSpeedX = -ballSpeedX; // Inverte direção no eixo X
-
-            // Adicionar um pequeno efeito aleatório ao movimento após a colisão
-            ballSpeedY += Math.random() * 2 - 1; // Aleatório entre -1 e 1
+            ballSpeedX = -ballSpeedX; // Inverter a direção no eixo X
+            ballSpeedY += (Math.random() * 2 - 1); // Adicionar efeito de variação aleatória
         }
 
         // Colisão com a raquete da IA
         if (ballX >= gameWidth - paddleWidth - 20 && ballY >= aiY && ballY <= aiY + paddleHeight) {
-            ballSpeedX = -ballSpeedX; // Inverte direção no eixo X
-
-            // Adicionar um pequeno efeito aleatório ao movimento após a colisão
-            ballSpeedY += Math.random() * 2 - 1; // Aleatório entre -1 e 1
+            ballSpeedX = -ballSpeedX; // Inverter a direção no eixo X
+            ballSpeedY += (Math.random() * 2 - 1); // Adicionar efeito de variação aleatória
         }
 
         // Se a bola passar pela raquete do jogador (perdeu um ponto)
@@ -65,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function () {
             resetBall();
         }
 
-        // Atualizar posição da bola
+        // Atualizar a posição da bola
         ball.style.left = `${ballX}px`;
         ball.style.top = `${ballY}px}`;
     }
 
-    // Movimento da raquete do jogador com o mouse
+    // Função para mover a raquete do jogador
     document.addEventListener('mousemove', (e) => {
         playerY = e.clientY - gameArea.offsetTop - paddleHeight / 2;
         if (playerY < 0) playerY = 0;
@@ -78,19 +75,19 @@ document.addEventListener('DOMContentLoaded', function () {
         playerPaddle.style.top = `${playerY}px`;
     });
 
-    // Movimento da raquete da IA (simples)
+    // Função para mover a raquete da IA
     function moveAI() {
         if (aiY + paddleHeight / 2 < ballY) {
-            aiY += 4;
+            aiY += 4; // A IA se move para baixo
         } else if (aiY + paddleHeight / 2 > ballY) {
-            aiY -= 4;
+            aiY -= 4; // A IA se move para cima
         }
         if (aiY < 0) aiY = 0;
         if (aiY > gameHeight - paddleHeight) aiY = gameHeight - paddleHeight;
         aiPaddle.style.top = `${aiY}px`;
     }
 
-    // Resetar a bola no centro
+    // Função para resetar a bola
     function resetBall() {
         ballX = gameWidth / 2;
         ballY = gameHeight / 2;
@@ -98,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1);
     }
 
-    // Atualizar a cada frame
+    // Função de loop do jogo
     function gameLoop() {
         moveBall();
         moveAI();
