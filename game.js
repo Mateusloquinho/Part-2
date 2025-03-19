@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let ballX = gameWidth / 2;
     let ballY = gameHeight / 2;
-    let ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1);
-    let ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1);
+    let ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1); // velocidade inicial aleatória
+    let ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1); // velocidade inicial aleatória
 
     let playerY = gameHeight / 2 - 50;
     let aiY = gameHeight / 2 - 50;
@@ -32,17 +32,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Verificar colisão com a parte superior ou inferior
         if (ballY <= 0 || ballY >= gameHeight - 20) {
-            ballSpeedY = -ballSpeedY;
+            ballSpeedY = -ballSpeedY; // Reverte direção no eixo Y
         }
 
         // Colisão com a raquete do jogador
         if (ballX <= paddleWidth && ballY >= playerY && ballY <= playerY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
+            ballSpeedX = -ballSpeedX; // Inverte direção no eixo X
+
+            // Adicionar um pequeno efeito aleatório ao movimento após a colisão
+            ballSpeedY += Math.random() * 2 - 1; // Aleatório entre -1 e 1
         }
 
         // Colisão com a raquete da IA
         if (ballX >= gameWidth - paddleWidth - 20 && ballY >= aiY && ballY <= aiY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
+            ballSpeedX = -ballSpeedX; // Inverte direção no eixo X
+
+            // Adicionar um pequeno efeito aleatório ao movimento após a colisão
+            ballSpeedY += Math.random() * 2 - 1; // Aleatório entre -1 e 1
         }
 
         // Se a bola passar pela raquete do jogador (perdeu um ponto)
