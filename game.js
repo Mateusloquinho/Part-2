@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Se a bola passar pela raquete do jogador (perdeu um ponto)
         if (ballX <= 0) {
             aiScore++;
-            aiScoreDisplay.textContent = aiScore; // Atualiza o placar
+            aiScoreDisplay.textContent = aiScore;
             resetBall();
         }
 
         // Se a bola passar pela raquete da IA (perdeu um ponto)
         if (ballX >= gameWidth - 20) {
             playerScore++;
-            playerScoreDisplay.textContent = playerScore; // Atualiza o placar
+            playerScoreDisplay.textContent = playerScore;
             resetBall();
         }
 
