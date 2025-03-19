@@ -6,6 +6,13 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #222;
+    flex-direction: column;
+}
+
+#scoreboard {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 #gameArea {

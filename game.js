@@ -1,10 +1,11 @@
-// Esperar o carregamento do DOM
 document.addEventListener('DOMContentLoaded', function () {
     // Definir elementos e variáveis do jogo
     const gameArea = document.getElementById('gameArea');
     const playerPaddle = document.getElementById('playerPaddle');
     const aiPaddle = document.getElementById('aiPaddle');
     const ball = document.getElementById('ball');
+    const playerScoreDisplay = document.getElementById('playerScore');
+    const aiScoreDisplay = document.getElementById('aiScore');
 
     const gameWidth = gameArea.clientWidth;
     const gameHeight = gameArea.clientHeight;
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const paddleHeight = 100;
     const paddleWidth = 10;
+
+    // Pontuação
+    let playerScore = 0;
+    let aiScore = 0;
 
     // Atualizar a posição da bola
     function moveBall() {
@@ -41,13 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Se a bola passar pela raquete do jogador (perdeu um ponto)
-        if (ballX <= 0 || ballX >= gameWidth - 20) {
+        if (ballX <= 0) {
+            aiScore++;
+            aiScoreDisplay.textContent = aiScore;
+            resetBall();
+        }
+
+        // Se a bola passar pela raquete da IA (perdeu um ponto)
+        if (ballX >= gameWidth - 20) {
+            playerScore++;
+            playerScoreDisplay.textContent = playerScore;
             resetBall();
         }
 
         // Atualizar posição da bola
         ball.style.left = `${ballX}px`;
-        ball.style.top = `${ballY}px`;
+        ball.style.top = `${ballY}px}`;
     }
 
     // Movimento da raquete do jogador com o mouse
