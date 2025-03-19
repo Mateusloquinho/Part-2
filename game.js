@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const gameWidth = gameArea.clientWidth;
     const gameHeight = gameArea.clientHeight;
 
-    let ballX = gameWidth / 2;
-    let ballY = gameHeight / 2;
+    let ballX = gameWidth / 3;
+    let ballY = gameHeight / 3;
     let ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1); // Direção inicial aleatória
     let ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1); // Direção inicial aleatória
 
