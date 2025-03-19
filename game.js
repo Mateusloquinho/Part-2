@@ -61,4 +61,50 @@ document.addEventListener('DOMContentLoaded', function () {
         // Se a bola passar pela raquete da IA (perdeu um ponto)
         if (ballX >= gameWidth - 20) {
             playerScore++;
-            playerScoreDisplay.textContent = playerScore; // Atualiza o
+            playerScoreDisplay.textContent = playerScore; // Atualiza o placar
+            resetBall();
+        }
+
+        // Atualizar posição da bola
+        ball.style.left = `${ballX}px`;
+        ball.style.top = `${ballY}px}`;
+    }
+
+    // Movimento da raquete do jogador com o mouse
+    document.addEventListener('mousemove', (e) => {
+        playerY = e.clientY - gameArea.offsetTop - paddleHeight / 2;
+        if (playerY < 0) playerY = 0;
+        if (playerY > gameHeight - paddleHeight) playerY = gameHeight - paddleHeight;
+        playerPaddle.style.top = `${playerY}px`;
+    });
+
+    // Movimento da raquete da IA (simples)
+    function moveAI() {
+        if (aiY + paddleHeight / 2 < ballY) {
+            aiY += 4;
+        } else if (aiY + paddleHeight / 2 > ballY) {
+            aiY -= 4;
+        }
+        if (aiY < 0) aiY = 0;
+        if (aiY > gameHeight - paddleHeight) aiY = gameHeight - paddleHeight;
+        aiPaddle.style.top = `${aiY}px`;
+    }
+
+    // Resetar a bola no centro
+    function resetBall() {
+        ballX = gameWidth / 2;
+        ballY = gameHeight / 2;
+        ballSpeedX = 5 * (Math.random() < 0.5 ? 1 : -1);
+        ballSpeedY = 5 * (Math.random() < 0.5 ? 1 : -1);
+    }
+
+    // Atualizar a cada frame
+    function gameLoop() {
+        moveBall();
+        moveAI();
+        requestAnimationFrame(gameLoop);
+    }
+
+    // Iniciar o loop do jogo
+    gameLoop();
+});
