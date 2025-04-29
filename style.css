@@ -1,22 +1,23 @@
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-    --roxo: #A294F9;
-    --lilas: #CDC1FF;
-    --areia-roxa: #E5D9F2;
-    --roxinho: #F5EFFF;
+    --bege: #F5F5DC;
+    --creme: #FFF8E7;
+    --marrom-claro: #D2B48C;
+    --areia: #FAEBD7;
+    --dourado-suave: #F5DEB3;
 }
 
 header {
     display: flex;
     width: 100%;
-    background-color: var(--roxo);
-    padding: 25px; /*espaçamento interno*/
-    position: relative; /*posiciona em relação a posição inicial*/
+    background-color: var(--marrom-claro);
+    padding: 25px;
+    position: relative;
     justify-content: center;
 }
 
@@ -29,7 +30,7 @@ header {
     cursor: pointer;
     font-size: 20px;
     background: none;
-    background-color: var(--lilas);
+    background-color: var(--creme);
     border: none;
     border-radius: 5px;
     padding: 15px 12px;
@@ -38,9 +39,9 @@ header {
 
 .menu button {
     text-decoration: none;
-    background-color: #CDC1FF;
+    background-color: var(--creme);
     color: black;
-    font-size: 18px 8px;
+    font-size: 18px;
     padding: 5px 10px;
     margin: 0px 8px;
     border-radius: 5px;
@@ -58,8 +59,8 @@ header {
 .listinha {
     display: none;
     position: absolute;
-    background-color: var(--lilas);
-    box-shadow: 0 2px 5px var(--roxinho);
+    background-color: var(--creme);
+    box-shadow: 0 2px 5px var(--dourado-suave);
     min-width: 190px;
     z-index: 1;
     top: 100%;
@@ -76,7 +77,7 @@ header {
 }
 
 .listinha a:hover {
-    background-color: var(--areia-roxa);
+    background-color: var(--areia);
 }
 
 #menu-toggle:checked ~ .listinha {
@@ -99,7 +100,7 @@ header {
 }
 
 body {
-    background-color: var(--roxinho);
+    background-color: var(--dourado-suave);
     font-family: Arial, sans-serif;
     line-height: 1.5;
 }
@@ -129,7 +130,7 @@ p, h2 {
 }
 
 .comeco a {
-    color: plum;
+    color: #8B7355;
     display: flex;
     justify-content: left;
     padding: 20px;
@@ -150,7 +151,7 @@ img {
     padding: 20px;
     margin: 50px auto;
     width: 80%;
-    background-color: var(--lilas);
+    background-color: var(--creme);
     border-radius: 10px;
     box-shadow: 0 0 10px gray;
 }
@@ -159,7 +160,7 @@ img {
     padding: 20px;
     margin: 50px auto;
     width: 80%;
-    background-color: var(--lilas);
+    background-color: var(--creme);
     border-radius: 10px;
     box-shadow: 0 0 10px gray;
 }
@@ -168,16 +169,16 @@ img {
     padding: 20px;
     margin: 50px auto;
     width: 80%;
-    background-color: var(--lilas);
+    background-color: var(--creme);
     border-radius: 10px;
     box-shadow: 0 0 10px gray;
 }
 
 .rodape {
-        display: grid;
-        grid-template-columns: 10% 90%;
-        align-items: center;
-        background-color: var(--roxo);
+    display: grid;
+    grid-template-columns: 10% 90%;
+    align-items: center;
+    background-color: var(--marrom-claro);
 }
 
 footer img {
