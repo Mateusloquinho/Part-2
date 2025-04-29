@@ -1,39 +1,185 @@
-body {
+{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --roxo: #A294F9;
+    --lilas: #CDC1FF;
+    --areia-roxa: #E5D9F2;
+    --roxinho: #F5EFFF;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    background-color: var(--roxo);
+    padding: 25px; /*espaçamento interno*/
+    position: relative; /*posiciona em relação a posição inicial*/
+    justify-content: center;
+}
+
+.menu-materias {
+    width: 15%;
+    display: inline-block;
+}
+
+.botao-materias {
+    cursor: pointer;
+    font-size: 20px;
+    background: none;
+    background-color: var(--lilas);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 12px;
+    color: black;
+}
+
+.menu button {
+    text-decoration: none;
+    background-color: #CDC1FF;
+    color: black;
+    font-size: 18px 8px;
+    padding: 5px 10px;
+    margin: 0px 8px;
+    border-radius: 5px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.listinha {
+    display: none;
+    position: absolute;
+    background-color: var(--lilas);
+    box-shadow: 0 2px 5px var(--roxinho);
+    min-width: 190px;
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+}
+
+.listinha a {
+    color: black;
+    padding: 10px 12px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+}
+
+.listinha a:hover {
+    background-color: var(--areia-roxa);
+}
+
+#menu-toggle:checked ~ .listinha {
+    display: block;
+}
+
+#menu-toggle:checked + .botao-materias {
+    background-color: white;
+}
+
+.pesquisa {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.pesquisa input {
+    padding: 6px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+body {
+    background-color: var(--roxinho);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+ul {
+    padding: 0;
+    margin: auto;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+}
+
+p, h2 {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #222;
-    flex-direction: column;
 }
 
-#scoreboard {
-    font-size: 36px;
-    color: white;
-    margin-bottom: 10px;
+.comeco {
+    margin: 25px;
 }
 
-#gameArea {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    background-color: #004d00;
-    border: 5px solid #fff;
+.comeco a {
+    color: plum;
+    display: flex;
+    justify-content: left;
+    padding: 20px;
 }
 
-.paddle {
-    position: absolute;
-    width: 10px;
-    height: 100px;
-    background-color: #fff;
+img {
+    display: flex;
+    width: 70%;
+    margin: 30px auto;
 }
 
-#ball {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #fff;
+.bagulho li {
+    list-style: circle;
+    margin: 20px;
+}
+
+.atividades {
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    background-color: var(--lilas);
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.trabalhos {
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    background-color: var(--lilas);
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.provas {
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+    background-color: var(--lilas);
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.rodape {
+        display: grid;
+        grid-template-columns: 10% 90%;
+        align-items: center;
+        background-color: var(--roxo);
+}
+
+footer img {
+    width: 55%;
 }

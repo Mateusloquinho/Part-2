@@ -3,209 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Game Simples</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #87CEEB;
-        }
-        #gameArea {
-            position: relative;
-            width: 800px;
-            height: 400px;
-            background-color: #008000;
-            margin: 50px auto;
-            overflow: hidden;
-        }
-        #player {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            bottom: 0;
-            left: 50px;
-            border-radius: 5px;
-        }
-        .enemy {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: blue;
-            bottom: 0;
-            border-radius: 5px;
-        }
-        #score {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-size: 20px;
-        }
-        #lives {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 20px;
-        }
-    </style>
+    <title>Cabeçalho</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="gameArea">
-        <div id="player"></div>
-        <div id="score">Pontos: 0</div>
-        <div id="lives">Vidas: 2</div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Definir elementos e variáveis
-            const gameArea = document.getElementById('gameArea');
-            const player = document.getElementById('player');
-            const scoreDisplay = document.getElementById('score');
-            const livesDisplay = document.getElementById('lives');
-
-            let score = 0;
-            let lives = 2;
-            let playerX = 50;
-            let playerY = 0;
-            let playerSpeedX = 5;
-            let gravity = 1;
-            let velocityY = 0;
-            let isJumping = false;
-
-            const gameWidth = gameArea.clientWidth;
-            const gameHeight = gameArea.clientHeight;
-
-            // Criar inimigos
-            let enemies = [];
-            let enemySpeed = 2;
-
-            // Função para mover o jogador
-            function movePlayer() {
-                player.style.left = `${playerX}px`;
-                player.style.bottom = `${playerY}px`;
-            }
-
-            // Função para movimentação
-            function move() {
-                // Movimentos com as setas
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === "ArrowRight") {
-                        playerX += playerSpeedX;
-                    }
-                    if (e.key === "ArrowLeft") {
-                        playerX -= playerSpeedX;
-                    }
-                    if (e.key === "ArrowUp" && !isJumping) {
-                        jump();
-                    }
-                });
-
-                // Limites do jogador
-                if (playerX < 0) playerX = 0;
-                if (playerX > gameWidth - 30) playerX = gameWidth - 30;
-
-                // Aplica a gravidade no pulo
-                if (isJumping) {
-                    playerY += velocityY;
-                    velocityY -= gravity;
-
-                    if (playerY <= 0) {
-                        isJumping = false;
-                        velocityY = 0;
-                        playerY = 0;
-                    }
-                } else {
-                    if (playerY > 0) playerY -= gravity;
-                }
-
-                movePlayer();
-            }
-
-            // Função para pular
-            function jump() {
-                isJumping = true;
-                velocityY = 20;
-            }
-
-            // Função para criar inimigos
-            function createEnemy() {
-                const enemy = document.createElement('div');
-                enemy.classList.add('enemy');
-                enemy.style.left = `${gameWidth}px`; // Começar do lado direito
-                enemy.style.bottom = `0px`;
-                gameArea.appendChild(enemy);
-
-                let enemyX = gameWidth;
-                let enemyY = 0;
-
-                enemies.push({ element: enemy, x: enemyX, y: enemyY });
-            }
-
-            // Função para mover inimigos
-            function moveEnemies() {
-                enemies.forEach((enemy, index) => {
-                    enemy.x -= enemySpeed;
-                    enemy.element.style.left = `${enemy.x}px`;
-
-                    // Colisão com o jogador (matando o inimigo)
-                    if (enemy.x >= playerX && enemy.x <= playerX + 30 && playerY === 0) {
-                        score += 1;
-                        scoreDisplay.textContent = `Pontos: ${score}`;
-                        enemy.element.remove();
-                        enemies.splice(index, 1);
-                    }
-
-                    // Verifica se o inimigo saiu da tela
-                    if (enemy.x < 0) {
-                        enemy.element.remove();
-                        enemies.splice(index, 1);
-                    }
-
-                    // Verifica se o jogador foi atingido pelo inimigo
-                    if (enemy.x <= playerX + 30 && enemy.x + 30 >= playerX && playerY === 0) {
-                        lives -= 1;
-                        livesDisplay.textContent = `Vidas: ${lives}`;
-                        enemy.element.remove();
-                        enemies.splice(index, 1);
-                        if (lives <= 0) {
-                            alert('Game Over!');
-                            resetGame();
-                        }
-                    }
-                });
-            }
-
-            // Função para resetar o jogo
-            function resetGame() {
-                score = 0;
-                lives = 2;
-                scoreDisplay.textContent = `Pontos: ${score}`;
-                livesDisplay.textContent = `Vidas: ${lives}`;
-                playerX = 50;
-                playerY = 0;
-                isJumping = false;
-                enemies = [];
-            }
-
-            // Loop de atualização do jogo
-            function gameLoop() {
-                move();
-                moveEnemies();
-
-                // Cria inimigos periodicamente
-                if (Math.random() < 0.02) {
-                    createEnemy();
-                }
-
-                requestAnimationFrame(gameLoop);
-            }
-
-            // Iniciar o loop do jogo
-            gameLoop();
-        });
-    </script>
+    <header>
+        <div class="menu-materias">
+            <input type="checkbox" id="menu-toggle"> 
+            <label for="menu-toggle" class="botao-materias">Matérias</label> 
+            <div class="listinha">
+                <ul>
+                    <li><a href="portugues.html">Português</a></li>
+                    <li><a href="matematica.html">Matemática</a></li>
+                    <li><a href="quimica.html">Química</a></li>
+                    <li><a href="fisica.html">Física</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pesquisa">
+            <input type="text" placeholder="Pesquisar....">
+        </div>
+        <div class="menu">
+            <button><a href="#at">Tarefas de Casa</a></button>
+            <button><a href="#tra">Trabalho</a></button>
+            <button><a href="#pro">Prova</a></button>
+        </div>
+    </header>
+    <h1>Introdução</h1>
+    <p>Apresentamos as seguintes matérias, como as principais do autor que não tem criatividade</p>
+    <footer class="rodape">
+        <div>
+            <img src="./image.png" alt="cep">
+        </div>
+        <div>
+            <p>Colégio Estadual do Paraná</p>
+            <p>Av. João Gualberto, 250 - Centro</p>
+        </div>
+    </footer>
 </body>
 </html>
